@@ -3,13 +3,14 @@
 {% block body %}
 
     <div class="container">
-        <h2>Listing: {{ listing.title }}</h2>
+        <h2 class="d-inline-block">Listing: {{ listing.title }}</h2>
+        <button type="button" class="btn btn-secondary btn-sm ml-3">Watchlist</button>
         <div>
             <img src='{{ listing.picture.url }}'>
         </div>
         <div>
             <p>{{ listing.description }}</p>
-            <p><strong>${{ listing.price }}</strong></p>
+            <h4><strong>${{ listing.price }}</strong></h4>
             <br>
             <h3>Details</h3>
             <ul>

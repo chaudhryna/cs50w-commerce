@@ -4,4 +4,18 @@
 
 <h2>Watchlist for {{ request.user }}</h2>
 
+{% for item in watchlist %}
+    <div class="container row border mx-auto py-3">
+        <div class="col pl-5">
+            <img src='{{ item.listing.picture.url }}'>
+        </div>
+        <div class="col">
+            <h4><strong><a href="{% url 'listing_detail' item.listing.title %}">{{ item.listing.title }}</a></strong></h4>
+            <p><strong>Price: ${{ item.listing.price}}</strong></p>
+            <br>
+            <p>Created {{ item.listing.created }}</p>
+        </div>
+    </div>
+    {% endfor %}
+
 {% endblock %}

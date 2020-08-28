@@ -94,10 +94,10 @@ def listings_by_category(request, category):
 def listing_detail(request, title):
     listing = Listing.objects.get(title=title)
     context = {'listing': listing}
-    print('you got to the listing_detail url')
     return render(request, "auctions/listing_detail.html", context)
 
-def watchlist(request):
-    listing = Listing.objects.all()
-    context = {'listing': listing}
+def watchlist(request, pk=None):
+    user = request.user
+    print("The pk is: ", pk)
+    context = {'watchlist': Watchlist.objects.filter(user=pk)}
     return render(request, "auctions/watchlist.html", context)

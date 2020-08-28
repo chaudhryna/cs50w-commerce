@@ -2,7 +2,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils import timezone
 
-
 class User(AbstractUser):
     pass
 
@@ -27,7 +26,10 @@ class Listing(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
     category = models.CharField(max_length=15, null=True, choices=CATEGORY)
     status = models.CharField(max_length=10, null=True, choices=STATUS, default='Active')
-    
 
     def __str__(self):
         return self.title
+
+class Watchlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
