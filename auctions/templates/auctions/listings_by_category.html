@@ -1,11 +1,12 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-<h2>Listings for {{ title }}</h2>
-
+<div class="container">
+    <h2>Listings for {{ title }}</h2>
+</div>
     {% for listing in listings %}
     <div class="container row border mx-auto py-3">
-        <div class="col pl-5">
+        <div class="col">
             <img src='{{ listing.picture.url }}'>
         </div>
         <div class="col">
@@ -13,6 +14,7 @@
             <p><strong>Price: ${{ listing.price}}</strong></p>
             <br>
             <p>Created {{ listing.created }}</p>
+            </div>
         </div>
     </div>
     {% endfor %}

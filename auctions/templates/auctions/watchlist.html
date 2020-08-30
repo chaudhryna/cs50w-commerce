@@ -1,10 +1,10 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-
-<h2>Watchlist for {{ request.user }}</h2>
-
-{% for item in watchlist %}
+<div class="container">
+    <h2>Watchlist for {{ request.user|title }}</h2>
+</div>
+{% for item in watchlist_items %}
     <div class="container row border mx-auto py-3">
         <div class="col pl-5">
             <img src='{{ item.listing.picture.url }}'>
@@ -16,6 +16,7 @@
             <p>Created {{ item.listing.created }}</p>
         </div>
     </div>
+
     {% endfor %}
 
 {% endblock %}
