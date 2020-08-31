@@ -1,5 +1,5 @@
 from django.forms import ModelForm, Textarea, TextInput, Select, NumberInput, FileInput
-from .models import Comment, Listing
+from .models import Comment, Listing, Bid
 
 class ListingForm(ModelForm):
 
@@ -24,3 +24,12 @@ class CommentForm(ModelForm):
         widgets = {
             'comment': Textarea(attrs={'class': 'form-control', 'cols': 80, 'rows': 3})
         }
+
+class BidForm(ModelForm):
+
+    class Meta:
+        model = Bid
+        fields = ('bid_price',)
+
+        widgets = {
+            'bid_price': NumberInput(attrs={'class': 'form-control', 'placeholder': 'Bid'})} 

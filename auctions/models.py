@@ -27,6 +27,8 @@ class Listing(models.Model):
     category = models.CharField(max_length=15, null=True, choices=CATEGORY)
     status = models.CharField(max_length=10, null=True, choices=STATUS, default='Active')
     watchlisted = models.ManyToManyField(User, default=None, blank=True, related_name='watchlisted')
+    bids = models.ManyToManyField(User, default=None, blank=True, related_name='bids')
+    winner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,related_name='winner')
 
     def __str__(self):
         return self.title
@@ -55,3 +57,19 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.comment, self.user)
+
+class Bid(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
+    bid_price = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    created = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering = ['created']
+
+    def __str__(self):
+        return str(self.listing)
+
+    @property
+    def num_bids(self):
+        return self.all().count()
